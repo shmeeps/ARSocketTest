@@ -52,7 +52,8 @@ namespace CAVESocketTest
             StartSimulation = 25,
             EndSimulation = 26,
             PauseSimulation = 27,
-            Exit = 28
+            Exit = 28,
+            Test = 99
         }
 
         public Form1()
@@ -172,6 +173,12 @@ namespace CAVESocketTest
             sendCommand(Commands.Emergency);
         }
 
+        // Test
+        private void test_Click(object sender, EventArgs e)
+        {
+            sendCommand(Commands.Test);
+        }
+
         // Sends a command
         private void sendCommand(Commands cmd)
         {
@@ -180,7 +187,9 @@ namespace CAVESocketTest
                 byte[] byData = System.Text.Encoding.ASCII.GetBytes(((int)cmd).ToString());
                 if (m_clientSocket != null)
                 {
-                    m_clientSocket.Send(byData);
+                    //m_clientSocket.Send(byData);
+                    m_clientSocket.Send(byData, byData.Length, SocketFlags.None);
+
                 }
             }
             catch (SocketException se)
@@ -237,6 +246,8 @@ namespace CAVESocketTest
         {
             try
             {
+                int tempCMD = 0;
+
                 SocketPacket theSockId = (SocketPacket)asyn.AsyncState;
                 int iRx = theSockId.thisSocket.EndReceive(asyn);
                 char[] chars = new char[iRx + 1];
@@ -244,6 +255,34 @@ namespace CAVESocketTest
                 int charLen = d.GetChars(theSockId.dataBuffer, 0, iRx, chars, 0);
                 System.String szData = new System.String(chars);
                 // richTextRxMessage.Text = richTextRxMessage.Text + szData;
+
+                try
+                {
+                    tempCMD = Convert.ToInt32(szData);
+                }
+                catch (FormatException e)
+                {
+                    output.Text = output.Text + szData;
+
+                    // TODO: Try to interpret CAVE Calibration data?
+                }
+                catch (OverflowException e)
+                {
+                    // Do nothing
+                }
+                finally
+                {
+                    if (tempCMD < Int32.MaxValue)
+                    {
+                        output.Text = output.Text + ((Commands)tempCMD).ToString();
+                    }
+                    else
+                    {
+                        output.Text = output.Text + szData;
+                    }
+                }
+
+
                 WaitForData();
             }
             catch (ObjectDisposedException)
