@@ -14,13 +14,13 @@ namespace CAVESocketTest
 {
     public partial class Form1 : Form
     {
-        byte[] m_dataBuffer = new byte [10];
+        //byte[] m_dataBuffer = new byte [64];
 		IAsyncResult m_result;
 		public AsyncCallback m_pfnCallBack ;
 		public Socket m_clientSocket;
 
         public String m_IPAddress = "127.0.0.1";
-        public String m_Port      = "8000";
+        public String m_Port      = "8008";
 
         public enum Commands
         {
@@ -217,6 +217,7 @@ namespace CAVESocketTest
                 {
                     m_pfnCallBack = new AsyncCallback(OnDataReceived);
                 }
+
                 SocketPacket theSocPkt = new SocketPacket();
                 theSocPkt.thisSocket = m_clientSocket;
                 // Start listening to the data asynchronously
@@ -243,7 +244,11 @@ namespace CAVESocketTest
                 System.Text.Decoder d = System.Text.Encoding.UTF8.GetDecoder();
                 int charLen = d.GetChars(theSockId.dataBuffer, 0, iRx, chars, 0);
                 System.String szData = new System.String(chars);
-                // richTextRxMessage.Text = richTextRxMessage.Text + szData;
+
+                //textBox1.Text = textBox1.Text + szData + "\n";
+
+                MessageBox.Show(szData);
+
                 WaitForData();
             }
             catch (ObjectDisposedException)
@@ -287,7 +292,7 @@ namespace CAVESocketTest
         public class SocketPacket
         {
             public System.Net.Sockets.Socket thisSocket;
-            public byte[] dataBuffer = new byte[1];
+            public byte[] dataBuffer = new byte[4];
         }
     }
 }
