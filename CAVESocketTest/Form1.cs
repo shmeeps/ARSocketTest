@@ -15,6 +15,7 @@ namespace CAVESocketTest
     public partial class Form1 : Form
     {
         byte[] m_dataBuffer = new byte [10];
+
 		IAsyncResult m_result;
 		public AsyncCallback m_pfnCallBack ;
 		public Socket m_clientSocket;
@@ -187,9 +188,7 @@ namespace CAVESocketTest
                 byte[] byData = System.Text.Encoding.ASCII.GetBytes(((int)cmd).ToString());
                 if (m_clientSocket != null)
                 {
-                    //m_clientSocket.Send(byData);
-                    m_clientSocket.Send(byData, byData.Length, SocketFlags.None);
-
+                    m_clientSocket.Send(byData);
                 }
             }
             catch (SocketException se)
@@ -228,6 +227,7 @@ namespace CAVESocketTest
                 {
                     m_pfnCallBack = new AsyncCallback(OnDataReceived);
                 }
+
                 SocketPacket theSocPkt = new SocketPacket();
                 theSocPkt.thisSocket = m_clientSocket;
                 // Start listening to the data asynchronously
@@ -329,6 +329,7 @@ namespace CAVESocketTest
         {
             public System.Net.Sockets.Socket thisSocket;
             public byte[] dataBuffer = new byte[1];
+
         }
     }
 }
