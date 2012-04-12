@@ -222,7 +222,6 @@
             this.calibrateButton.TabIndex = 15;
             this.calibrateButton.Text = "Calibrate";
             this.calibrateButton.UseVisualStyleBackColor = true;
-            this.calibrateButton.Click += new System.EventHandler(this.calibrateButton_Click);
             // 
             // Form1
             // 
