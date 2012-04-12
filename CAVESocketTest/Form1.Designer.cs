@@ -37,12 +37,14 @@
             this.takeOffButton = new System.Windows.Forms.Button();
             this.emergencyButton = new System.Windows.Forms.Button();
             this.flatTrimButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.output = new System.Windows.Forms.TextBox();
             this.connectButton = new System.Windows.Forms.Button();
             this.disconnectButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.connectedStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.landButton = new System.Windows.Forms.Button();
+
             this.test = new System.Windows.Forms.Button();
             this.calibrateButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
@@ -138,6 +140,14 @@
             this.flatTrimButton.UseVisualStyleBackColor = true;
             this.flatTrimButton.Click += new System.EventHandler(this.flatTrimButton_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 256);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(260, 224);
+            this.textBox1.TabIndex = 9;
+            // 
             // output
             // 
             this.output.Location = new System.Drawing.Point(12, 285);
@@ -193,6 +203,7 @@
             this.landButton.UseVisualStyleBackColor = true;
             this.landButton.Click += new System.EventHandler(this.landButton_Click);
             // 
+
             // test
             // 
             this.test.Location = new System.Drawing.Point(12, 256);
@@ -224,6 +235,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.disconnectButton);
             this.Controls.Add(this.connectButton);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.output);
             this.Controls.Add(this.flatTrimButton);
             this.Controls.Add(this.emergencyButton);
@@ -255,12 +267,14 @@
         private System.Windows.Forms.Button takeOffButton;
         private System.Windows.Forms.Button emergencyButton;
         private System.Windows.Forms.Button flatTrimButton;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox output;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.Button disconnectButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel connectedStatus;
         private System.Windows.Forms.Button landButton;
+
         private System.Windows.Forms.Button test;
         private System.Windows.Forms.Button calibrateButton;
     }
