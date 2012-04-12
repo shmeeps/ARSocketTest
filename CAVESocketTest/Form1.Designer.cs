@@ -44,6 +44,7 @@
             this.connectedStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.landButton = new System.Windows.Forms.Button();
             this.test = new System.Windows.Forms.Button();
+            this.calibrateButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,14 +173,14 @@
             this.connectedStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 485);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(438, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // connectedStatus
             // 
             this.connectedStatus.Name = "connectedStatus";
-            this.connectedStatus.Size = new System.Drawing.Size(79, 17);
+            this.connectedStatus.Size = new System.Drawing.Size(83, 17);
             this.connectedStatus.Text = "Disconnected";
             // 
             // landButton
@@ -202,11 +203,22 @@
             this.test.UseVisualStyleBackColor = true;
             this.test.Click += new System.EventHandler(this.test_Click);
             // 
+            // calibrateButton
+            // 
+            this.calibrateButton.Location = new System.Drawing.Point(351, 12);
+            this.calibrateButton.Name = "calibrateButton";
+            this.calibrateButton.Size = new System.Drawing.Size(75, 23);
+            this.calibrateButton.TabIndex = 15;
+            this.calibrateButton.Text = "Calibrate";
+            this.calibrateButton.UseVisualStyleBackColor = true;
+            this.calibrateButton.Click += new System.EventHandler(this.calibrateButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 507);
+            this.ClientSize = new System.Drawing.Size(438, 507);
+            this.Controls.Add(this.calibrateButton);
             this.Controls.Add(this.test);
             this.Controls.Add(this.landButton);
             this.Controls.Add(this.statusStrip1);
@@ -250,6 +262,7 @@
         private System.Windows.Forms.ToolStripStatusLabel connectedStatus;
         private System.Windows.Forms.Button landButton;
         private System.Windows.Forms.Button test;
+        private System.Windows.Forms.Button calibrateButton;
     }
 }
 
