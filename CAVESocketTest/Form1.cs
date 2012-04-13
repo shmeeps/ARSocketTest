@@ -20,7 +20,7 @@ namespace CAVESocketTest
 		public Socket m_clientSocket;
 
         public String m_IPAddress = "127.0.0.1";
-        public String m_Port      = "8008";
+        public String m_Port      = "8007";
 
         public enum Commands
         {
@@ -178,21 +178,6 @@ namespace CAVESocketTest
             try
             {
                 byte[] byData = System.Text.Encoding.ASCII.GetBytes(((int)cmd).ToString());
-                if (m_clientSocket != null)
-                {
-                    m_clientSocket.Send(byData);
-                }
-            }
-            catch (SocketException se)
-            {
-                MessageBox.Show(se.Message);
-            }
-
-            Thread.Sleep(500);
-            
-            try
-            {
-                byte[] byData = System.Text.Encoding.ASCII.GetBytes(((int)Commands.None).ToString());
                 if (m_clientSocket != null)
                 {
                     m_clientSocket.Send(byData);
