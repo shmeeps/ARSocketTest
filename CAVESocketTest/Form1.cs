@@ -21,7 +21,7 @@ namespace CAVESocketTest
 		public Socket m_clientSocket;
 
         public String m_IPAddress = "127.0.0.1";
-        public String m_Port      = "8007";
+        public String m_Port      = "8008";
 
         public enum Commands
         {
@@ -328,8 +328,26 @@ namespace CAVESocketTest
         public class SocketPacket
         {
             public System.Net.Sockets.Socket thisSocket;
-            public byte[] dataBuffer = new byte[1024];
+            public byte[] dataBuffer = new byte[2048];
 
+        }
+
+        private void sendCalibrationData_Click(object sender, EventArgs e)
+        {
+            String JSONData = "{\"Up\":{\"lsx\":\"1.000000000000\",\"lsy\":\"2.000000000000\",\"lsz\":\"3.000000000000\",\"rsx\":\"3.000000000000\",\"rsy\":\"2.000000000000\",\"rsz\":\"1.000000000000\"},\"Down\":{\"lsx\":\"4.000000000000\",\"lsy\":\"5.000000000000\",\"lsz\":\"6.000000000000\",\"rsx\":\"6.000000000000\",\"rsy\":\"6.000000000000\",\"rsz\":\"5.000000000000\"},\"Left\":{\"lsx\":\"4.000000000000\",\"lsy\":\"7.000000000000\",\"lsz\":\"8.000000000000\",\"rsx\":\"9.000000000000\",\"rsy\":\"9.000000000000\",\"rsz\":\"8.000000000000\"},\"Right\":{\"lsx\":\"7.000000000000\",\"lsy\":\"0.000000010000\",\"lsz\":\"0.000000300000\",\"rsx\":\"0.000000000500\",\"rsy\":\"0.000000000005\",\"rsz\":\"0.000000000020\"},\"Forward\":{\"lsx\":\"0.000000000070\",\"lsy\":\"0.000000040000\",\"lsz\":\"0.000000000100\",\"rsx\":\"0.000004000000\",\"rsy\":\"0.000000007000\",\"rsz\":\"0.000000020000\"},\"Back\":{\"lsx\":\"0.000000000002\",\"lsy\":\"0.000000000003\",\"lsz\":\"0.000000000006\",\"rsx\":\"0.000000000007\",\"rsy\":\"0.000000000005\",\"rsz\":\"0.000000000050\"}}";
+
+            try
+            {
+                byte[] byData = System.Text.Encoding.ASCII.GetBytes(JSONData);
+                if (m_clientSocket != null)
+                {
+                    m_clientSocket.Send(byData);
+                }
+            }
+            catch (SocketException se)
+            {
+                MessageBox.Show(se.Message);
+            }
         }
     }
 }
