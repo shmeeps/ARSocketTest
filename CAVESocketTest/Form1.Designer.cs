@@ -37,12 +37,16 @@
             this.takeOffButton = new System.Windows.Forms.Button();
             this.emergencyButton = new System.Windows.Forms.Button();
             this.flatTrimButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.output = new System.Windows.Forms.TextBox();
             this.connectButton = new System.Windows.Forms.Button();
             this.disconnectButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.connectedStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.landButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+
+            this.test = new System.Windows.Forms.Button();
+            this.calibrateButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,6 +140,22 @@
             this.flatTrimButton.UseVisualStyleBackColor = true;
             this.flatTrimButton.Click += new System.EventHandler(this.flatTrimButton_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 256);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(260, 224);
+            this.textBox1.TabIndex = 9;
+            // 
+            // output
+            // 
+            this.output.Location = new System.Drawing.Point(12, 285);
+            this.output.Multiline = true;
+            this.output.Name = "output";
+            this.output.Size = new System.Drawing.Size(260, 195);
+            this.output.TabIndex = 9;
+            // 
             // connectButton
             // 
             this.connectButton.Location = new System.Drawing.Point(12, 12);
@@ -163,14 +183,14 @@
             this.connectedStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 485);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(438, 22);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // connectedStatus
             // 
             this.connectedStatus.Name = "connectedStatus";
-            this.connectedStatus.Size = new System.Drawing.Size(79, 17);
+            this.connectedStatus.Size = new System.Drawing.Size(83, 17);
             this.connectedStatus.Text = "Disconnected";
             // 
             // landButton
@@ -183,24 +203,39 @@
             this.landButton.UseVisualStyleBackColor = true;
             this.landButton.Click += new System.EventHandler(this.landButton_Click);
             // 
-            // textBox1
+
+            // test
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 256);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(260, 224);
-            this.textBox1.TabIndex = 9;
+            this.test.Location = new System.Drawing.Point(12, 256);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(260, 23);
+            this.test.TabIndex = 14;
+            this.test.Text = "Test";
+            this.test.UseVisualStyleBackColor = true;
+            this.test.Click += new System.EventHandler(this.test_Click);
+            // 
+            // calibrateButton
+            // 
+            this.calibrateButton.Location = new System.Drawing.Point(351, 12);
+            this.calibrateButton.Name = "calibrateButton";
+            this.calibrateButton.Size = new System.Drawing.Size(75, 23);
+            this.calibrateButton.TabIndex = 15;
+            this.calibrateButton.Text = "Calibrate";
+            this.calibrateButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 507);
+            this.ClientSize = new System.Drawing.Size(438, 507);
+            this.Controls.Add(this.calibrateButton);
+            this.Controls.Add(this.test);
             this.Controls.Add(this.landButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.disconnectButton);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.output);
             this.Controls.Add(this.flatTrimButton);
             this.Controls.Add(this.emergencyButton);
             this.Controls.Add(this.takeOffButton);
@@ -231,12 +266,16 @@
         private System.Windows.Forms.Button takeOffButton;
         private System.Windows.Forms.Button emergencyButton;
         private System.Windows.Forms.Button flatTrimButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox output;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.Button disconnectButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel connectedStatus;
         private System.Windows.Forms.Button landButton;
-        private System.Windows.Forms.TextBox textBox1;
+
+        private System.Windows.Forms.Button test;
+        private System.Windows.Forms.Button calibrateButton;
     }
 }
 

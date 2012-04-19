@@ -14,7 +14,8 @@ namespace CAVESocketTest
 {
     public partial class Form1 : Form
     {
-        //byte[] m_dataBuffer = new byte [64];
+        byte[] m_dataBuffer = new byte [1024];
+
 		IAsyncResult m_result;
 		public AsyncCallback m_pfnCallBack ;
 		public Socket m_clientSocket;
@@ -52,7 +53,8 @@ namespace CAVESocketTest
             StartSimulation = 25,
             EndSimulation = 26,
             PauseSimulation = 27,
-            Exit = 28
+            Exit = 28,
+            Test = 99
         }
 
         public Form1()
@@ -172,6 +174,12 @@ namespace CAVESocketTest
             sendCommand(Commands.Emergency);
         }
 
+        // Test
+        private void test_Click(object sender, EventArgs e)
+        {
+            sendCommand(Commands.Test);
+        }
+
         // Sends a command
         private void sendCommand(Commands cmd)
         {
@@ -187,6 +195,23 @@ namespace CAVESocketTest
             {
                 MessageBox.Show(se.Message);
             }
+
+            /*
+            Thread.Sleep(500);
+            
+            try
+            {
+                byte[] byData = System.Text.Encoding.ASCII.GetBytes(((int)Commands.None).ToString());
+                if (m_clientSocket != null)
+                {
+                    m_clientSocket.Send(byData);
+                }
+            }
+            catch (SocketException se)
+            {
+                MessageBox.Show(se.Message);
+            }
+            */
         }
 
         // ---------------------------------------------------------------- //
@@ -223,16 +248,42 @@ namespace CAVESocketTest
         {
             try
             {
+                int tempCMD = 0;
+
                 SocketPacket theSockId = (SocketPacket)asyn.AsyncState;
                 int iRx = theSockId.thisSocket.EndReceive(asyn);
                 char[] chars = new char[iRx + 1];
                 System.Text.Decoder d = System.Text.Encoding.UTF8.GetDecoder();
                 int charLen = d.GetChars(theSockId.dataBuffer, 0, iRx, chars, 0);
                 System.String szData = new System.String(chars);
+                // richTextRxMessage.Text = richTextRxMessage.Text + szData;
 
-                //textBox1.Text = textBox1.Text + szData + "\n";
+                try
+                {
+                    tempCMD = Convert.ToInt32(szData);
+                }
+                catch (FormatException e)
+                {
+                    output.Text = output.Text + szData;
 
-                MessageBox.Show(szData);
+                    // TODO: Try to interpret CAVE Calibration data?
+                }
+                catch (OverflowException e)
+                {
+                    // Do nothing
+                }
+                finally
+                {
+                    if (tempCMD < Int32.MaxValue)
+                    {
+                        output.Text = output.Text + ((Commands)tempCMD).ToString();
+                    }
+                    else
+                    {
+                        output.Text = output.Text + szData;
+                    }
+                }
+
 
                 WaitForData();
             }
@@ -277,7 +328,8 @@ namespace CAVESocketTest
         public class SocketPacket
         {
             public System.Net.Sockets.Socket thisSocket;
-            public byte[] dataBuffer = new byte[4];
+            public byte[] dataBuffer = new byte[1024];
+
         }
     }
 }
