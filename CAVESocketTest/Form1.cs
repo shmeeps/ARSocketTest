@@ -14,14 +14,13 @@ namespace CAVESocketTest
 {
     public partial class Form1 : Form
     {
-        byte[] m_dataBuffer = new byte [1024];
-
-		IAsyncResult m_result;
+    	IAsyncResult m_result;
 		public AsyncCallback m_pfnCallBack ;
 		public Socket m_clientSocket;
 
         public String m_IPAddress = "127.0.0.1";
         public String m_Port      = "8008";
+        static int m_bufferSize   = 1024;
 
         public enum Commands
         {
@@ -123,7 +122,11 @@ namespace CAVESocketTest
         // Foward
         private void forwardButton_Click(object sender, EventArgs e)
         {
-            sendCommand(Commands.Forward);
+            for (int i = 0; i < 2048; i++)
+            {
+                sendCommand(Commands.Forward);
+                Thread.Sleep(15);
+            }
         }
 
         // Back
@@ -328,7 +331,7 @@ namespace CAVESocketTest
         public class SocketPacket
         {
             public System.Net.Sockets.Socket thisSocket;
-            public byte[] dataBuffer = new byte[2048];
+            public byte[] dataBuffer = new byte[Form1.m_bufferSize];
 
         }
 
@@ -348,6 +351,8 @@ namespace CAVESocketTest
             {
                 MessageBox.Show(se.Message);
             }
+
+            this.sendCommand(Commands.CalibrationComplete);
         }
     }
 }
