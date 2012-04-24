@@ -122,11 +122,7 @@ namespace CAVESocketTest
         // Foward
         private void forwardButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 2048; i++)
-            {
-                sendCommand(Commands.Forward);
-                Thread.Sleep(15);
-            }
+            sendCommand(Commands.Forward);
         }
 
         // Back
@@ -353,6 +349,54 @@ namespace CAVESocketTest
             }
 
             this.sendCommand(Commands.CalibrationComplete);
+        }
+
+        private void packet_Click(object sender, EventArgs e)
+        {
+            for(int o = 0; o < 10; o++)
+            {
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.Forward);
+                    Thread.Sleep(20);
+                }
+
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.Backward);
+                    Thread.Sleep(20);
+                }
+
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.Left);
+                    Thread.Sleep(20);
+                }
+
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.Right);
+                    Thread.Sleep(20);
+                }
+
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.Up);
+                    Thread.Sleep(20);
+                }
+
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.Down);
+                    Thread.Sleep(20);
+                }
+
+                for (int i = 0; i < 50; i++)
+                {
+                    sendCommand(Commands.None);
+                    Thread.Sleep(20);
+                }
+            }
         }
     }
 }

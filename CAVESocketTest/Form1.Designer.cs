@@ -47,6 +47,7 @@
             this.test = new System.Windows.Forms.Button();
             this.calibrateButton = new System.Windows.Forms.Button();
             this.sendCalibrationData = new System.Windows.Forms.Button();
+            this.packet = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -232,11 +233,22 @@
             this.sendCalibrationData.UseVisualStyleBackColor = true;
             this.sendCalibrationData.Click += new System.EventHandler(this.sendCalibrationData_Click);
             // 
+            // packet
+            // 
+            this.packet.Location = new System.Drawing.Point(287, 166);
+            this.packet.Name = "packet";
+            this.packet.Size = new System.Drawing.Size(139, 23);
+            this.packet.TabIndex = 17;
+            this.packet.Text = "Packet packet packet";
+            this.packet.UseVisualStyleBackColor = true;
+            this.packet.Click += new System.EventHandler(this.packet_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(438, 507);
+            this.Controls.Add(this.packet);
             this.Controls.Add(this.sendCalibrationData);
             this.Controls.Add(this.calibrateButton);
             this.Controls.Add(this.test);
@@ -287,6 +299,7 @@
         private System.Windows.Forms.Button test;
         private System.Windows.Forms.Button calibrateButton;
         private System.Windows.Forms.Button sendCalibrationData;
+        private System.Windows.Forms.Button packet;
     }
 }
 
