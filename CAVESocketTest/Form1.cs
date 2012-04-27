@@ -19,7 +19,7 @@ namespace CAVESocketTest
 		public Socket m_clientSocket;
 
         public String m_IPAddress = "127.0.0.1";
-        public String m_Port      = "8008";
+        public String m_Port      = "8007";
         static int m_bufferSize   = 1024;
 
         public enum Commands
